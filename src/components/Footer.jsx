@@ -1,5 +1,4 @@
-import React from 'react';
-import { Gem, MapPin, Mail, Phone } from 'lucide-react';
+import { Gem, MapPin, Mail, Phone } from "lucide-react";
 
 const Footer = () => {
   return (
@@ -11,7 +10,8 @@ const Footer = () => {
             <span className="logo-text">Ceylon Gems</span>
           </div>
           <p className="footer-description">
-            Discover the world's most exquisite and ethically sourced gemstones direct from the jewel island of Sri Lanka.
+            Discover the world's most exquisite and ethically sourced gemstones
+            direct from the jewel island of Sri Lanka.
           </p>
         </div>
 
@@ -34,8 +34,12 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Ceylon Gems. All rights reserved.</p>
-        <p className="ethics-notice">Committed to ethical mining and fair trade practices.</p>
+        <p>
+          &copy; {new Date().getFullYear()} Ceylon Gems. All rights reserved.
+        </p>
+        <p className="ethics-notice">
+          Committed to ethical mining and fair trade practices.
+        </p>
       </div>
     </footer>
   );

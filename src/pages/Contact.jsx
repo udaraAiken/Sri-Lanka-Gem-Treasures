@@ -1,4 +1,8 @@
+import { useNotification } from "../hooks/useNotification";
+
 const Contact = () => {
+  const { showToast } = useNotification();
+
   return (
     <>
       <div className="page-header">

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { CheckCircle, X } from 'lucide-react';
+import { useEffect } from "react";
+import { CheckCircle, X } from "lucide-react";
 
 const Toast = ({ message, isVisible, onClose }) => {
   useEffect(() => {

@@ -1,5 +1,4 @@
-import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight } from "lucide-react";
 
 const GemCard = ({ gem, onClick }) => {
   return (

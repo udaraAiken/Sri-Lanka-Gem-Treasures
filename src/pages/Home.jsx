@@ -1,13 +1,18 @@
+import { useNavigate } from "react-router-dom";
+
 import GemCard from "../components/GemCard";
 import MapSection from "../components/MapSection";
+
 import { gemsData } from "../data/gemsData";
+
 import { useGems } from "../hooks/useGems";
 
 const Home = () => {
   const { setSelectedGem } = useGems();
+  const navigate = useNavigate();
 
   return (
-    <div>
+    <>
       <section className="hero">
         <img
           src="/assets/hero_gem.jpg"
@@ -20,7 +25,12 @@ const Home = () => {
             Explore the world's finest sapphires, rubies, and exotic gemstones
             from the legendary Ratnadeepa—the Island of Gems.
           </p>
-          <button className="btn-primary">Explore Our Collection</button>
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/collection")}
+          >
+            Explore Our Collection
+          </button>
         </div>
       </section>
 
@@ -32,7 +42,12 @@ const Home = () => {
           ))}
         </div>
         <div style={{ textAlign: "center", marginTop: "2rem" }}>
-          <button className="btn-primary">View All Gems</button>
+          <button
+            className="btn-primary"
+            onClick={() => navigate("/collection")}
+          >
+            View All Gems
+          </button>
         </div>
       </section>
 
@@ -43,7 +58,7 @@ const Home = () => {
         <h2 className="section-title">The Gem Island</h2>
         <MapSection />
       </section>
-    </div>
+    </>
   );
 };
 

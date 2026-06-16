@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import { X, ZoomIn, Info, Send, Loader2 } from 'lucide-react';
-import { submitInquiry } from '../firebase';
+import { useState } from "react";
+import { X, ZoomIn, Info, Send, Loader2 } from "lucide-react";
+import { submitInquiry } from "../firebase";
 
 const GemModal = ({ gem, onClose, onInquirySuccess }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
+
   // Form State
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   if (!gem) return null;
 
   const handleOverlayClick = (e) => {
-    if (e.target.className === 'modal-overlay') {
+    if (e.target.className === "modal-overlay") {
       onClose();
     }
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       await submitInquiry({
         ...formData,
         gemId: gem.id,
-        gemName: gem.name
+        gemName: gem.name,
       });
       onInquirySuccess("Inquiry sent successfully! We will contact you soon.");
       onClose();
@@ -57,13 +57,13 @@ const GemModal = ({ gem, onClose, onInquirySuccess }) => {
         <div className="modal-grid">
           {/* Left Column: Imagery */}
           <div className="modal-gallery">
-            <div 
-              className={`main-image-container ${isZoomed ? 'zoomed' : ''}`}
+            <div
+              className={`main-image-container ${isZoomed ? "zoomed" : ""}`}
               onClick={() => setIsZoomed(!isZoomed)}
             >
-              <img 
-                src={gem.images[activeImageIndex]} 
-                alt={gem.name} 
+              <img
+                src={gem.images[activeImageIndex]}
+                alt={gem.name}
                 className="main-image"
               />
               {!isZoomed && (
@@ -73,14 +73,14 @@ const GemModal = ({ gem, onClose, onInquirySuccess }) => {
                 </div>
               )}
             </div>
-            
+
             <div className="thumbnail-list">
               {gem.images.map((img, idx) => (
-                <img 
+                <img
                   key={idx}
                   src={img}
                   alt={`${gem.name} view ${idx + 1}`}
-                  className={`thumbnail ${activeImageIndex === idx ? 'active' : ''}`}
+                  className={`thumbnail ${activeImageIndex === idx ? "active" : ""}`}
                   onClick={() => setActiveImageIndex(idx)}
                 />
               ))}
@@ -90,14 +90,18 @@ const GemModal = ({ gem, onClose, onInquirySuccess }) => {
           {/* Right Column: Details & Form */}
           <div className="modal-info">
             <h2 className="modal-title">{gem.name}</h2>
-            <p className="modal-scientific">{gem.scientificName} • {gem.category}</p>
-            
+            <p className="modal-scientific">
+              {gem.scientificName} • {gem.category}
+            </p>
+
             <div className="modal-description">
               <p>{gem.description}</p>
-              
+
               <div className="fun-fact">
                 <Info size={18} className="fact-icon" />
-                <p><strong>Did you know?</strong> {gem.funFact}</p>
+                <p>
+                  <strong>Did you know?</strong> {gem.funFact}
+                </p>
               </div>
             </div>
 
@@ -125,36 +129,40 @@ const GemModal = ({ gem, onClose, onInquirySuccess }) => {
               <h3>Inquire About This Gem</h3>
               <form onSubmit={handleSubmit} className="inquiry-form">
                 <div className="form-group">
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     name="name"
-                    placeholder="Your Name" 
-                    required 
+                    placeholder="Your Name"
+                    required
                     value={formData.name}
                     onChange={handleInputChange}
                   />
                 </div>
                 <div className="form-group">
-                  <input 
-                    type="email" 
+                  <input
+                    type="email"
                     name="email"
-                    placeholder="Your Email" 
-                    required 
+                    placeholder="Your Email"
+                    required
                     value={formData.email}
                     onChange={handleInputChange}
                   />
                 </div>
                 <div className="form-group">
-                  <textarea 
+                  <textarea
                     name="message"
-                    placeholder="I am interested in learning more about this piece..." 
-                    rows="3" 
+                    placeholder="I am interested in learning more about this piece..."
+                    rows="3"
                     required
                     value={formData.message}
                     onChange={handleInputChange}
                   ></textarea>
                 </div>
-                <button type="submit" className="btn-submit" disabled={isSubmitting}>
+                <button
+                  type="submit"
+                  className="btn-submit"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? (
                     <>
                       <Loader2 size={18} className="spinner" />
