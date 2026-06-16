@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import { Gem, Menu, X } from 'lucide-react';
+import { useState } from "react";
+import { Gem, Menu, X } from "lucide-react";
 
-const Navbar = ({ currentView, setView }) => {
+const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'collection', label: 'Collection' },
-    { id: 'about', label: 'About Sri Lanka' },
-    { id: 'verify', label: 'Verify Cert' },
-    { id: 'contact', label: 'Contact' },
+    { id: "home", label: "Home" },
+    { id: "collection", label: "Collection" },
+    { id: "about", label: "About Sri Lanka" },
+    { id: "verify", label: "Verify Cert" },
+    { id: "contact", label: "Contact" },
   ];
 
-  const handleNavClick = (viewId) => {
-    setView(viewId);
+  const handleNavClick = () => {
     setIsMobileMenuOpen(false);
   };
 
@@ -21,7 +20,7 @@ const Navbar = ({ currentView, setView }) => {
     <nav className="navbar">
       <div className="navbar-container">
         {/* Logo */}
-        <div className="logo" onClick={() => handleNavClick('home')}>
+        <div className="logo" onClick={() => handleNavClick("home")}>
           <Gem className="logo-icon" size={28} />
           <span className="logo-text">Ceylon Gems</span>
         </div>
@@ -31,7 +30,7 @@ const Navbar = ({ currentView, setView }) => {
           {navItems.map((item) => (
             <button
               key={item.id}
-              className={`nav-item ${currentView === item.id ? 'active' : ''}`}
+              className={`nav-item active`}
               onClick={() => handleNavClick(item.id)}
             >
               {item.label}
@@ -49,11 +48,11 @@ const Navbar = ({ currentView, setView }) => {
       </div>
 
       {/* Mobile Navigation Drawer */}
-      <div className={`mobile-nav ${isMobileMenuOpen ? 'open' : ''}`}>
+      <div className={`mobile-nav ${isMobileMenuOpen ? "open" : ""}`}>
         {navItems.map((item) => (
           <button
             key={item.id}
-            className={`nav-item ${currentView === item.id ? 'active' : ''}`}
+            className={`nav-item active`}
             onClick={() => handleNavClick(item.id)}
           >
             {item.label}
